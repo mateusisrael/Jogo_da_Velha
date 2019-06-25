@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+}
+
+.tabuleiro{
+    background-color: gold;
+    width: 330px;
+    height: 330px;
+
+    display: flex;
+    flex-flow: row wrap;
+}
+.quadrado{
+    margin: 5px;
+    width: 100px;
+    height: 100px;
+    background-color: yellow;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.quadrado p{
+    color: gray;
+    font-size: 3em;
+}
