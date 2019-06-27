@@ -15,23 +15,24 @@ var tabuleiro = {
 }
 
 var jogadas = 0;
+
 var jogador1 = {
+    nome: "jogador1",
     cor: "blue"
 }
+jogador1.jogadas = [];
+
 var jogador2 = {
+    nome: "jogador2",
     cor: "red"
 }
+jogador2.jogadas = [];
 
 
-
-tabuleiro.q1.ja_clicado = false;
-tabuleiro.q2.ja_clicado = false;
-tabuleiro.q3.ja_clicado = false;
-tabuleiro.q4.ja_clicado = false;
-tabuleiro.q5.ja_clicado = false;
-tabuleiro.q6.ja_clicado = false;
-tabuleiro.q7.ja_clicado = false;
-tabuleiro.q8.ja_clicado = false;
+tabuleiro.q1.ja_clicado = false; tabuleiro.q2.ja_clicado = false;
+tabuleiro.q3.ja_clicado = false; tabuleiro.q4.ja_clicado = false;
+tabuleiro.q5.ja_clicado = false; tabuleiro.q6.ja_clicado = false;
+tabuleiro.q7.ja_clicado = false; tabuleiro.q8.ja_clicado = false;
 tabuleiro.q9.ja_clicado = false;
 
 tabuleiro.q1.addEventListener('click', () => { verificarPosicao(q1) });
@@ -51,7 +52,7 @@ function verificarPosicao(quadrado_clicado) {
 
     if (quadrado_clicado.ja_clicado == false) {
         checarQuemFazAJogada(quadrado_clicado);
-        console.log('Jogada Permitida');
+        // console.log('Jogada Permitida');
 
     } else if (quadrado_clicado.ja_clicado == true) {
         bloquearJogada();
@@ -77,33 +78,32 @@ function checarQuemFazAJogada(quadrado_clicado) {
 }
 
 
-function fazerJogada(jogador, no_quadrado_clicado) {
+function fazerJogada(jogador, quadrado_clicado) {
 
     if (jogador == jogador1) {
-        no_quadrado_clicado.style.backgroundColor = jogador1.cor;
-        registrarJogada(jogador1, no_quadrado_clicado);
+        quadrado_clicado.style.backgroundColor = jogador1.cor;
+        registrarJogada(jogador1, quadrado_clicado);
 
     } else if (jogador == jogador2) {
-        no_quadrado_clicado.style.backgroundColor = jogador2.cor;
-        registrarJogada(jogador2, no_quadrado_clicado);
+        quadrado_clicado.style.backgroundColor = jogador2.cor;
+        registrarJogada(jogador2, quadrado_clicado);
     }
 
 }
 
 function registrarJogada(jogador, quadrado) {
-    jogador.jogadas = quadrado.id; // "jogadas" precisa ser um array
-    checarVitoria();
+
+    jogador.jogadas.push(quadrado.id);
+    // console.log(jogador.nome, jogador.jogadas);
+
+    checarVitoria(jogador.jogadas);
 }
 
 function bloquearJogada() {
-    // Se um dos jogadores clicar em um quadrado que já tenha sido clicado antes,
-    // na mesma rodada, bloquear a jogada e retornar uma mensagem(alert).
     alert("Jogada não permitida!")
 }
 
-function checarVitoria() {
-
-    // Comparar se a o array de jogadas tem os items necessários para a vitória
+function checarVitoria(jogadas) {
 
 }
 
